@@ -38,10 +38,10 @@ static consteval auto CreateTimerDelayTable()
 	std::array<uint8_t, 0x81> timerDelayTable{};
 	for (uint8_t i = 0x40; i <= 0x80; i++)
 	{
-        if (i & 1)
-        {
-            continue;
-        }
+		if (i & 1)
+		{
+			continue;
+		}
 
 		uint8_t timer = 0x14;
 		uint16_t subTimer = 0;
@@ -123,7 +123,7 @@ static consteval std::array<uint16_t, 0xFFFF> CreateRngTable()
 		// note rngState == RngState[0] | RngState[1] << 8
 		// i.e. rngState == [0xFF80] | [0xFF81] << 8
 		uint16_t xorVal = (rngState & 1) ? 0xB400 : 0;
-        rngState = (rngState >> 1) ^ xorVal;
+		rngState = (rngState >> 1) ^ xorVal;
 	}
 
 	return rngTable;
@@ -138,7 +138,7 @@ static consteval std::array<uint16_t, 0x10000> CreateReverseRngTable()
 	{
 		reverseRngTable[rngState] = i;
 		uint16_t xorVal = (rngState & 1) ? 0xB400 : 0;
-        rngState = (rngState >> 1) ^ xorVal;
+		rngState = (rngState >> 1) ^ xorVal;
 	}
 
 	return reverseRngTable;
